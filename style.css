@@ -3,8 +3,8 @@
     height: 7vw;
     border-radius: 50%;
     background-color: seagreen;
-    position: fixed;
+    position: absolute;
     left: 50vw;
     top: 50vh;
-    
 }
+
