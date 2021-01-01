@@ -1,0 +1,5 @@
+Design an interface to display graphs
+- Identify Objects
+    - Ball (Node)
+    - Line (Connection) [Directed or Undirected]
+
