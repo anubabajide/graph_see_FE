@@ -8,3 +8,16 @@
     top: 50vh;
 }
 
+.vertical-axis,
+.horizontal-axis {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 1px;
+}
+
+.path {
+  fill: none;
+  stroke: #555;
+  stroke-width: 1px;
+  stroke-linecap: round;
+}
