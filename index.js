@@ -60,7 +60,7 @@ class NodeClass {
 function createNode() {
     const newNode1 = new NodeClass(70, 70);
     const newNode2 = new NodeClass(70, 30);
-    const newNode3 = new NodeClass(30, 30);
+    const newNode3 = new NodeClass(30, 30, [newNode1, newNode2]);
     const newNode4 = new NodeClass(30, 70);
     const newNode5 = new NodeClass(50, 80);
     const newNode6 = new NodeClass(80, 50);
