@@ -1,26 +1,28 @@
 class NodeClass {
     static count = 0;
     static RADIUS = 4;
+    static allNodes = [];
     static increaseCount() {
         this.count += 1;
     }
     
     static createNode(x, y){
-        const circle = 
+        const circleCode = 
         `
         <circle id="node-${this.count}" cx="${x}" cy="${y}" r="${this.RADIUS}" class="node">
         </circle>
         `;
         this.increaseCount();
-        document.querySelector("#graph").insertAdjacentHTML("beforeEnd", circle);
-        return document.querySelector(`#node-${this.count-1}`);
+        document.querySelector("#graph").insertAdjacentHTML("beforeEnd", circleCode);
+        const node = document.querySelector(`#node-${this.count-1}`);
+        return node;
     }
     
-    constructor(x=50, y=50, neighbors = []) {
+    constructor(x=50, y=50) {
         this.node = this.constructor.createNode(x, y);        
         this.x = x;
         this.y = y;
-        this.createConnections(neighbors);
+        NodeClass.allNodes.push(this);
     }
     
     getOffset(node){
@@ -41,11 +43,12 @@ class NodeClass {
         return {x1, x2, y1, y2};
     }
 
-    createConnections(nodes){
-        console.log(nodes)
-        for (let idx in nodes){
-            this.connect(nodes[idx]);
-        }
+    createConnections(){
+        NodeClass.allNodes.forEach(element => {
+            if (element !== this) {
+                this.connect(element);
+            }
+        });
     }
 
     connect(node) {
@@ -60,11 +63,14 @@ class NodeClass {
 function createNode() {
     const newNode1 = new NodeClass(70, 70);
     const newNode2 = new NodeClass(70, 30);
-    const newNode3 = new NodeClass(30, 30, [newNode1, newNode2]);
+    const newNode3 = new NodeClass(30, 30);
     const newNode4 = new NodeClass(30, 70);
     const newNode5 = new NodeClass(50, 80);
     const newNode6 = new NodeClass(80, 50);
     const newNode7 = new NodeClass(20, 50);
     const newNode8 = new NodeClass(50, 20);
-    const newNode = new NodeClass(undefined, undefined,[newNode1, newNode2, newNode3, newNode4, newNode5, newNode6, newNode7, newNode8]);
+    // const newNode = new NodeClass(10, 15);
+    [newNode1, newNode2, newNode3, newNode4, newNode5, newNode6, newNode7, newNode8].forEach(el => {
+        el.createConnections();
+    })
 }
